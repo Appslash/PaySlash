@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PaySlash</string>
+    <string name="accessibility_service_description">PaySlash</string>
+    <string name="title_activity_dashboard">dashboard</string>
+    <string name="title_home">Home</string>
+    <string name="title_setting">Settings</string>
+    <string name="title_exit">Exit</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+</resources>
