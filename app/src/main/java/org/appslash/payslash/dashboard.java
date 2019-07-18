@@ -15,7 +15,8 @@ import android.widget.TextView;
 
 public class dashboard extends AppCompatActivity implements settingsFragment.OnFragmentInteractionListener,
                                                             notificationsFragment.OnFragmentInteractionListener,
-                                                            dashboardFragment.OnFragmentInteractionListener{
+                                                            dashboardFragment.OnFragmentInteractionListener,
+                                                            qrscannerFragment.OnFragmentInteractionListener{
     @Override
     public void onFragmentInteraction(Uri uri) {
 
@@ -24,6 +25,7 @@ public class dashboard extends AppCompatActivity implements settingsFragment.OnF
     final Fragment settingsFragment = new settingsFragment();
     final Fragment dashboardFragment = new dashboardFragment();
     final Fragment notificationsFragment = new notificationsFragment();
+    final Fragment qrscannerFragment = new qrscannerFragment();
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = dashboardFragment;
 
@@ -46,7 +48,8 @@ public class dashboard extends AppCompatActivity implements settingsFragment.OnF
                     active = dashboardFragment;
                     return true;
                 case R.id.navigation_qrscan:
-                    //mTextMessage.setText(R.string.title_scanqr);
+                    fm.beginTransaction().hide(active).show(qrscannerFragment).commit();
+                    active = qrscannerFragment;
                     return true;
                 case R.id.navigation_notifications:
                     fm.beginTransaction().hide(active).show(notificationsFragment).commit();
@@ -71,6 +74,7 @@ public class dashboard extends AppCompatActivity implements settingsFragment.OnF
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         fm.beginTransaction().add(R.id.main_container,settingsFragment).hide(settingsFragment).commit();
         fm.beginTransaction().add(R.id.main_container,notificationsFragment).hide(notificationsFragment).commit();
+        fm.beginTransaction().add(R.id.main_container,qrscannerFragment).hide(qrscannerFragment).commit();
         fm.beginTransaction().add(R.id.main_container,active).show(active).commit();
     }
 

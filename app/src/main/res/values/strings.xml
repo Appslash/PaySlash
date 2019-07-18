@@ -9,6 +9,12 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+
+    <string name="qr_upi">UPI ID</string>
+    <string name="qr_upi_scanned"></string>
+    <string name="qr_upi_scanned_text">Scan QR Code</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

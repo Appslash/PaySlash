@@ -14,11 +14,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+    //QR Code START
+    private Button buttonScanQRCode;
+    private TextView textUPI;
+    //QR Code END
     private static final int REQUEST_CALL = 1;
     private EditText mEditTextNumber;
     @Override
