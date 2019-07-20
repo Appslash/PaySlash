@@ -1,6 +1,9 @@
 package org.appslash.payslash;
 
+import android.app.Activity;
 import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +15,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 public class dashboard extends AppCompatActivity implements settingsFragment.OnFragmentInteractionListener,
                                                             notificationsFragment.OnFragmentInteractionListener,
@@ -26,6 +33,7 @@ public class dashboard extends AppCompatActivity implements settingsFragment.OnF
     final Fragment dashboardFragment = new dashboardFragment();
     final Fragment notificationsFragment = new notificationsFragment();
     final Fragment qrscannerFragment = new qrscannerFragment();
+    final Activity activity =this;
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = dashboardFragment;
 
@@ -48,8 +56,15 @@ public class dashboard extends AppCompatActivity implements settingsFragment.OnF
                     active = dashboardFragment;
                     return true;
                 case R.id.navigation_qrscan:
-                    fm.beginTransaction().hide(active).show(qrscannerFragment).commit();
-                    active = qrscannerFragment;
+                    IntentIntegrator intentIntegrator = new IntentIntegrator(activity);
+                    intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+                    intentIntegrator.setPrompt("Scan to Pay");
+                    intentIntegrator.setCameraId(0);
+                    intentIntegrator.setBeepEnabled(true);
+                    intentIntegrator.setBarcodeImageEnabled(false);
+                    intentIntegrator.initiateScan();
+//                    fm.beginTransaction().hide(active).show(qrscannerFragment).commit();
+//                    active = qrscannerFragment;
                     return true;
                 case R.id.navigation_notifications:
                     fm.beginTransaction().hide(active).show(notificationsFragment).commit();
@@ -78,4 +93,22 @@ public class dashboard extends AppCompatActivity implements settingsFragment.OnF
         fm.beginTransaction().add(R.id.main_container,active).show(active).commit();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode, Intent data) {
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
+        if (intentResult!=null){
+            if(intentResult.getContents()==null){
+                Toast.makeText(this,"Scan Cancelled",Toast.LENGTH_LONG).show();
+            }
+            else{
+                String scannedData=intentResult.getContents();
+                Toast.makeText(this,intentResult.getContents(),Toast.LENGTH_LONG).show();
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("label",scannedData);
+                clipboard.setPrimaryClip(clip);
+            }
+
+
+        }
+    }
 }
