@@ -13,8 +13,10 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".dashboard"
-            android:label="@string/title_activity_dashboard"></activity>
-
+            android:label="@string/title_activity_dashboard" />
+        <activity
+            android:name=".sendMoneyActivity"
+            android:label="@string/send_money" />
         <service
             android:name=".USSDService"
             android:enabled="true"
@@ -37,5 +39,6 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
 </manifest>

@@ -17,4 +17,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="send_money">Send Money</string>
+    <string name="request_money">Request Money</string>
+    <string name="check_balance">Check Balance</string>
+    <string name="my_profile">My Profile</string>
+    <string name="pending_transactions">Pending Transactions</string>
+    <string name="transactions">Transactions</string>
+    <string name="upi_pin">UPI PIN</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="upi_id">UPI ID</string>
+    <string name="ifsc_account_number">IFSC Account Number</string>
+    <string name="saved_beneficiery">Saved Beneficiery</string>
 </resources>

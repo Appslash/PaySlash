@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-public class dashboard extends AppCompatActivity implements settingsFragment.OnFragmentInteractionListener,
+public class dashboard<CurrentActivity> extends AppCompatActivity implements settingsFragment.OnFragmentInteractionListener,
                                                             notificationsFragment.OnFragmentInteractionListener,
                                                             dashboardFragment.OnFragmentInteractionListener,
                                                             qrscannerFragment.OnFragmentInteractionListener{
@@ -110,5 +110,11 @@ public class dashboard extends AppCompatActivity implements settingsFragment.OnF
 
 
         }
+    }
+
+
+    public void sendmoney(View view) {
+        Intent intent = new Intent(dashboard.this, sendMoneyActivity.class);
+        startActivity(intent);
     }
 }
