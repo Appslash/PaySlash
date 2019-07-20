@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.appslash.payslash">
 
-
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -11,12 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".scansendMoney"></activity>
+        <activity android:name=".requestMoney" />
         <activity
             android:name=".dashboard"
             android:label="@string/title_activity_dashboard" />
         <activity
             android:name=".sendMoneyActivity"
             android:label="@string/send_money" />
+
         <service
             android:name=".USSDService"
             android:enabled="true"
@@ -39,6 +42,5 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.CALL_PHONE" />
 
 </manifest>

@@ -93,6 +93,24 @@ public class dashboard<CurrentActivity> extends AppCompatActivity implements set
         fm.beginTransaction().add(R.id.main_container,active).show(active).commit();
     }
 
+    private Uri ussdToCallableUri(String ussd) {
+
+        String uriString = "";
+
+        if(!ussd.startsWith("tel:"))
+            uriString += "tel:";
+
+        for(char c : ussd.toCharArray()) {
+
+            if(c == '#')
+                uriString += Uri.encode("#");
+            else
+                uriString += c;
+        }
+
+        return Uri.parse(uriString);
+    }
+
     @Override
     protected void onActivityResult(int requestCode,int resultCode, Intent data) {
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
@@ -102,10 +120,12 @@ public class dashboard<CurrentActivity> extends AppCompatActivity implements set
             }
             else{
                 String scannedData=intentResult.getContents();
-                Toast.makeText(this,intentResult.getContents(),Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"Proceeding to pay",Toast.LENGTH_LONG).show();
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("label",scannedData);
                 clipboard.setPrimaryClip(clip);
+                Intent callIntent = new Intent(Intent.ACTION_CALL, ussdToCallableUri("*99*1*3#"));
+                startActivity(callIntent);
             }
 
 
@@ -115,6 +135,20 @@ public class dashboard<CurrentActivity> extends AppCompatActivity implements set
 
     public void sendmoney(View view) {
         Intent intent = new Intent(dashboard.this, sendMoneyActivity.class);
+        startActivity(intent);
+    }
+
+    public void checkbalance(View view) {
+        Intent callIntent = new Intent(Intent.ACTION_CALL, ussdToCallableUri("*99*3#"));
+        startActivity(callIntent);
+    }
+
+    public void requestMoney(View view) {
+        Intent intent = new Intent(dashboard.this, requestMoney.class);
+        startActivity(intent);
+    }
+    public void scansendmoney(View view) {
+        Intent intent = new Intent(dashboard.this, scansendMoney.class);
         startActivity(intent);
     }
 }
