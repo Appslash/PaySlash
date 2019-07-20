@@ -132,6 +132,16 @@ public class dashboard<CurrentActivity> extends AppCompatActivity implements set
         }
     }
 
+    public void scanfunc() {
+
+        IntentIntegrator intentIntegrator = new IntentIntegrator(activity);
+        intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+        intentIntegrator.setPrompt("Scan to Pay");
+        intentIntegrator.setCameraId(0);
+        intentIntegrator.setBeepEnabled(true);
+        intentIntegrator.setBarcodeImageEnabled(false);
+        intentIntegrator.initiateScan();
+    }
 
     public void sendmoney(View view) {
         Intent intent = new Intent(dashboard.this, sendMoneyActivity.class);

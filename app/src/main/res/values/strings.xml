@@ -28,4 +28,8 @@
     <string name="upi_id">UPI ID</string>
     <string name="ifsc_account_number">IFSC Account Number</string>
     <string name="saved_beneficiery">Saved Beneficiery</string>
+    <string name="sender_phone_number">Sender Phone Number</string>
+    <string name="reciever_phone_number">Reciever Phone Number</string>
+    <string name="amount_to_send">Amount to Send</string>
+    <string name="upi_password">Enter UPI Password</string>
 </resources>
