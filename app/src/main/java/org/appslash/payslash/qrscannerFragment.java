@@ -73,7 +73,7 @@ public class qrscannerFragment extends Fragment {
         buttonScanQRCode = (Button) view.findViewById(R.id.buttonScanQRCode);
         textUPI = (TextView) view.findViewById(R.id.textUPI);
         //intializing scan object
-       // qrScan = new IntentIntegrator(this);
+        //qrScan = new IntentIntegrator(this);
         //buttonScanQRCode.setOnClickListener(this);
         return inflater.inflate(R.layout.fragment_qrscanner, container, false);
     }
